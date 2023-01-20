@@ -1,8 +1,8 @@
 import arcade
 
 # Set constants for the screen size
-SCREEN_WIDTH = 600
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
 
 # Open the window. Set the window title and dimensions (width and height)
 arcade.open_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Drawing Example")
