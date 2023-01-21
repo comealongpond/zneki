@@ -1,39 +1,22 @@
-import arcade
+from models.Sprite import *
 
-class Player(arcade.Sprite):
+class Player(Sprite):
     def __init__(self):
-        super().__init__()
+        super(Player, self).__init__()
+        
+        self.position["x"] = 600
+        self.position["y"] = 500
+
+        self.initSpritesList()
 
     def on_draw(self):
-        arcade.start_render()
-        
-        img = self.spritesList["idle"][self.currentSpriteIndex]
-        player_sprite = arcade.Sprite(img, 1)
-        player_sprite.center_x = 900
-        player_sprite.center_y = 500
-        player_sprite.draw()
+        super().on_draw()
 
-       # arcade.finish_render()
+    def on_update(self, dt):
+        super().on_update(dt)
 
-    def update(self, dt):
-        if (self.timeSinceLastSpriteChange + dt >= self.spriteRotateDT):
-            self.spriteSwap()
-            self.timeSinceLastSpriteChange = 0
-        else:
-            self.timeSinceLastSpriteChange += dt
-
-    def spriteSwap(self):
-        if (self.currentSpriteIndex + 1 >= len(self.spritesList["idle"])-1):
-            self.currentSpriteIndex = 1
-        else:
-            self.currentSpriteIndex += 1
-
-    #GameWindowReference = None
-    timeSinceLastSpriteChange = 0
-    currentSpriteIndex = 1
-    spriteRotateDT = .15
-    spritesList = {
-        "idle": [
+    def initSpritesList(self):
+        self.spritesList["idle"] = [
             "assets/sprites/the_knight/Idle_1.png",
             "assets/sprites/the_knight/Idle_2.png",
             "assets/sprites/the_knight/Idle_3.png",
@@ -45,4 +28,15 @@ class Player(arcade.Sprite):
             "assets/sprites/the_knight/Idle_9.png",
             "assets/sprites/the_knight/Idle_10.png"
         ]
-    }
+        self.spritesList["walk"] = [
+            "assets/sprites/the_knight/Walk_1.png",
+            "assets/sprites/the_knight/Walk_2.png",
+            "assets/sprites/the_knight/Walk_3.png",
+            "assets/sprites/the_knight/Walk_4.png",
+            "assets/sprites/the_knight/Walk_5.png",
+            "assets/sprites/the_knight/Walk_6.png",
+            "assets/sprites/the_knight/Walk_7.png",
+            "assets/sprites/the_knight/Walk_8.png",
+            "assets/sprites/the_knight/Walk_9.png",
+            "assets/sprites/the_knight/Walk_10.png"
+        ]
