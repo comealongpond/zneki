@@ -1,6 +1,6 @@
 import arcade
 
-from GameWindow import GameWindow
+from views.GameWindow import GameWindow
 
 def main():
     app = GameWindow()
