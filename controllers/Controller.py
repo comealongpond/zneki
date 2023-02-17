@@ -7,3 +7,5 @@ class Controller:
 
     def on_keypress(self, symbol, modifiers):
         return
+
+    modelReference: None

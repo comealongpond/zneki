@@ -1,27 +1,10 @@
-from models.Sprite import *
-# from controllers.PlayerController import PlayerController
+from views.sprites.Sprite import Sprite
 
-class Player(Sprite):
-    def __init__(self):
-        super(Player, self).__init__()
-        
-        self.position["x"] = 600
-        self.position["y"] = 500
+class PlayerSprite(Sprite):
 
-#        self.controller = PlayerController()
-
+    def __init__(self, playerModel):
+        super().__init__(playerModel)
         self.initSpritesList()
-
-    def on_draw(self):
-        super().on_draw()
-
-    def on_update(self, dt):
-        super().on_update(dt)
-
-    def on_keypress(self, symbol, modifiers):
-        super().on_keypress(symbol, modifiers)
-        
- #       self.controller.on_keypress(symbol, modifiers)
 
     def initSpritesList(self):
         self.spritesList["idle"] = [
@@ -48,3 +31,4 @@ class Player(Sprite):
             "assets/sprites/the_knight/Walk_9.png",
             "assets/sprites/the_knight/Walk_10.png"
         ]
+        
