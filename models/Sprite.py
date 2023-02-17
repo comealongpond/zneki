@@ -22,6 +22,9 @@ class Sprite(arcade.Sprite):
         else:
             self.timeSinceLastSpriteChange += dt
 
+    def on_keypress(self, symbol, modifiers):
+        return
+
     def spriteSwap(self):
         if (self.currentSpriteIndex + 1 >= len(self.spritesList[self.moveState])-1):
             self.currentSpriteIndex = 1

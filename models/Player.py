@@ -1,4 +1,5 @@
 from models.Sprite import *
+# from controllers.PlayerController import PlayerController
 
 class Player(Sprite):
     def __init__(self):
@@ -7,6 +8,8 @@ class Player(Sprite):
         self.position["x"] = 600
         self.position["y"] = 500
 
+#        self.controller = PlayerController()
+
         self.initSpritesList()
 
     def on_draw(self):
@@ -14,6 +17,11 @@ class Player(Sprite):
 
     def on_update(self, dt):
         super().on_update(dt)
+
+    def on_keypress(self, symbol, modifiers):
+        super().on_keypress(symbol, modifiers)
+        
+ #       self.controller.on_keypress(symbol, modifiers)
 
     def initSpritesList(self):
         self.spritesList["idle"] = [
