@@ -8,10 +8,13 @@ class Sprite(arcade.Sprite):
     def on_draw(self):
         arcade.start_render()
         
-        img = self.spritesList[self.moveState][self.currentSpriteIndex]
+        img = self.spritesList[self.modelReference.moveState][self.currentSpriteIndex]
         draw_sprite = arcade.Sprite(img, 1)
         draw_sprite.center_x = self.modelReference.position["x"]
         draw_sprite.center_y = self.modelReference.position["y"]
+        draw_sprite.angle = self.modelReference.rotation 
+        if self.modelReference.isMovingLeft:
+            draw_sprite.flipped_hortizontally = True
         draw_sprite.draw()
 
        # arcade.finish_render()
@@ -27,7 +30,7 @@ class Sprite(arcade.Sprite):
         return
 
     def spriteSwap(self):
-        if (self.currentSpriteIndex + 1 >= len(self.spritesList[self.moveState])-1):
+        if (self.currentSpriteIndex + 1 >= len(self.spritesList[self.modelReference.moveState])-1):
             self.currentSpriteIndex = 1
         else:
             self.currentSpriteIndex += 1
@@ -35,10 +38,11 @@ class Sprite(arcade.Sprite):
     #GameWindowReference = None
     timeSinceLastSpriteChange = 0
     currentSpriteIndex = 1
-    moveState = "idle"
     spriteRotateDT = .15
     modelReference = None
     spritesList = {
         "idle": [],
-        "walk": []
+        "walk": [],
+        "run": [],
+        "jump": []
     }
