@@ -1,9 +1,9 @@
 import arcade
 
-from controllers.Controller import Controller
+from controllers.GameObjectController import GameObjectController
 
 
-class PlayerController(Controller):
+class PlayerController(GameObjectController):
     def __init__(self, playerModel):
         self.modelReference = playerModel
 
@@ -12,7 +12,7 @@ class PlayerController(Controller):
         if self.modelReference.position["y"] <= 300 and self.modelReference.isJumping:
             self.modelReference.isJumping = False
 
-        if self.modelReference.velocity["y"] > 0:
+        if abs(self.modelReference.velocity["y"]) > 0:
             self.modelReference.moveState = "jump"
         elif self.modelReference.velocity["x"] == 0:
             self.modelReference.moveState = "idle"

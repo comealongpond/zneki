@@ -1,6 +1,6 @@
 
 
-class Model():
+class GameObjectModel():
     def __init__(self):
         return
 

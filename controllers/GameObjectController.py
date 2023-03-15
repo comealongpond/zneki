@@ -1,6 +1,6 @@
 
 
-class Controller:
+class GameObjectController:
     
     def on_update(self, dt):
         self.update_position(dt)
@@ -41,13 +41,19 @@ class Controller:
         elif self.modelReference.isMovingDown:
             change_y -= self.modelReference.acceleration * dt
         else: # grävity
-            if self.modelReference.isAffectedGravity:
+            if self.modelReference.isJumping:
                 change_y = min(0, change_y + self.modelReference.deceleration * dt)
 
         vx = self.modelReference.velocity["x"] + change_x
         if (drainingLeft and vx < 0) or (drainingRight and vx > 0):
             vx = 0
         self.modelReference.velocity["x"] = min(self.modelReference.speed, vx)
+
         self.modelReference.velocity["y"] = min(self.modelReference.speed, self.modelReference.velocity["y"] + change_y)
+        # if abs(change_y) > 0:
+        #     if self.modelReference.velocity["y"] < 0:
+        #         self.modelReference.velocity["y"] = max(0, self.modelReference.velocity["y"] + change_y)
+        #     else:
+        #         self.modelReference.velocity["y"] = min(0, self.modelReference.velocity["y"] + change_y)
 
     modelReference: None

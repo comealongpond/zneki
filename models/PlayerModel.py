@@ -1,8 +1,8 @@
-from models.Model import Model
+from models.GameObjectModel import GameObjectModel
 
-class PlayerModel(Model):
+class PlayerModel(GameObjectModel):
     def __init__(self):
-        super(PlayerModel, self).__init__()
+        super().__init__()
         
         self.position["x"] = 300
         self.position["y"] = 300
