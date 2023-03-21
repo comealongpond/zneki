@@ -7,7 +7,7 @@ GRAVITY = 1500
 
 # Damping - Amount of speed lost per second
 DEFAULT_DAMPING = 1.0
-PLAYER_DAMPING = 0.4
+PLAYER_DAMPING = 0.01
 
 # Friction between objects
 PLAYER_FRICTION = 1.0
@@ -18,7 +18,7 @@ DYNAMIC_ITEM_FRICTION = 0.6
 PLAYER_MASS = 2.0
 
 # Keep player from going too fast
-PLAYER_MAX_HORIZONTAL_SPEED = 450
+PLAYER_MAX_HORIZONTAL_SPEED = 900
 PLAYER_MAX_VERTICAL_SPEED = 1600
 
 # Force applied when moving left/right in the air
@@ -38,7 +38,7 @@ SPRITE_SCALING_TILES = 0.5
 SPRITE_SIZE = int(SPRITE_IMAGE_SIZE * SPRITE_SCALING_PLAYER)
 
 # Close enough to not-moving to have the animation go to idle.
-DEAD_ZONE = 0.1
+DEAD_ZONE = 1.0
 
 # Constants used to track if the player is facing left or right
 RIGHT_FACING = 0

@@ -33,7 +33,7 @@ class GameWindow(arcade.Window):
         playerSprite.center_y = 6 * C.SPRITE_SIZE
         self.sprites.append(playerSprite)
         gravity = (0, -C.GRAVITY)
-        self.physics_engine = arcade.PymunkPhysicsEngine(damping=C.DEFAULT_DAMPING,gravity=gravity)
+        self.physics_engine = arcade.PymunkPhysicsEngine(damping=C.PLAYER_DAMPING,gravity=gravity)
         self.physics_engine.add_sprite(playerSprite,
                                        friction=C.PLAYER_FRICTION,
                                        mass=C.PLAYER_MASS,

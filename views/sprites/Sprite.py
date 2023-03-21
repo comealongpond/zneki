@@ -5,6 +5,7 @@ import Constants as C
 class Sprite(arcade.Sprite):
     def __init__(self, modelReference, defaultSprite):
         self.modelReference = modelReference
+        self.lastKnownMoveState = self.modelReference.moveState
 
         super().__init__()
         self.texture = arcade.load_texture(defaultSprite)
@@ -12,7 +13,10 @@ class Sprite(arcade.Sprite):
         self.character_face_direction = C.RIGHT_FACING
 
     def on_update(self, dt):
-        if (self.timeSinceLastSpriteChange + dt >= self.spriteRotateDT):
+        if self.lastKnownMoveState != self.modelReference.moveState:
+            self.currentSpriteIndex = 0
+            self.lastKnownMoveState = self.modelReference.moveState
+        if self.timeSinceLastSpriteChange + dt >= self.spriteRotateDT:
             self.spriteSwap()
             img = self.spritesList[self.modelReference.moveState][self.currentSpriteIndex]
             self.texture = arcade.load_texture(img)
@@ -64,6 +68,7 @@ class Sprite(arcade.Sprite):
     #GameWindowReference = None
     timeSinceLastSpriteChange = 0
     currentSpriteIndex = 1
+    lastKnownMoveState = None
     spriteRotateDT = .15
     modelReference = None
     spritesList = {

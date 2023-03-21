@@ -20,7 +20,6 @@ class PlayerController(GameObjectController):
         if symbol == arcade.key.A:
             self.modelReference.isMovingLeft = True
         if symbol == arcade.key.SPACE and self.gameWindowReference.physics_engine.is_on_ground(self.spriteReference):
-            self.modelReference.isJumping = True
             impulse = (0, 1800)
             self.gameWindowReference.physics_engine.apply_impulse(self.spriteReference, impulse)
     
@@ -41,7 +40,5 @@ class PlayerController(GameObjectController):
             infoStr += "isMovingUp, "
         if self.modelReference.isMovingDown:
             infoStr += "isMovingDown, "  
-        if self.modelReference.isJumping:
-            infoStr += "isJumping, "
 
         return infoStr

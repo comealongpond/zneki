@@ -3,7 +3,7 @@ from models.GameObjectModel import GameObjectModel
 class PlayerModel(GameObjectModel):
     def __init__(self):
         super().__init__()
-        self.speed = 400
+        self.speed = 9000
 
 
     def on_draw(self):
@@ -15,7 +15,6 @@ class PlayerModel(GameObjectModel):
     def on_keypress(self, symbol, modifiers):
         super().on_keypress(symbol, modifiers)
 
-    isJumping = False
         
 
     
