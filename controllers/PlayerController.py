@@ -32,7 +32,7 @@ class PlayerController(GameObjectController):
         return 
     
     def get_debug_info(self):
-        infoStr = f"Player x:{self.modelReference.position['x']:.3f}, y:{self.modelReference.position['y']:.3f}, vx:{self.modelReference.velocity['x']:.3f} , vy:{self.modelReference.velocity['y']:.3f}. "
+        infoStr = f"Player x:{self.spriteReference.center_x:.3f}, y:{self.spriteReference.center_y:.3f}. "
         if self.modelReference.isMovingLeft:
             infoStr += "isMovingLeft, "
         if self.modelReference.isMovingRight:
