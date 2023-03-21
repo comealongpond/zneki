@@ -1,6 +1,8 @@
 import arcade
 import timeit
 
+import Constants as C
+
 class Console():
 
     def __init__(self, gameWindow, playerController):
@@ -22,21 +24,21 @@ class Console():
 
     def on_draw_end(self):
         output = f"Drawing time: {timeit.default_timer() - self.draw_start_time:.3f}"
-        arcade.draw_text(output, 20, self.gameWindowReference.SCREEN_HEIGHT - 50, arcade.color.BLACK, 12)
+        arcade.draw_text(output, 20, C.SCREEN_HEIGHT - 50, arcade.color.BLACK, 12)
 
         if self.fps is not None:
             output = f"FPS: {self.fps:.0f}"
-            arcade.draw_text(output, 20, self.gameWindowReference.SCREEN_HEIGHT - 75, arcade.color.BLACK, 12)
+            arcade.draw_text(output, 20, C.SCREEN_HEIGHT - 75, arcade.color.BLACK, 12)
 
         output = self.playerControllerReference.get_debug_info()
-        arcade.draw_text(output, 20, self.gameWindowReference.SCREEN_HEIGHT - 100, arcade.color.BLACK, 12)
+        arcade.draw_text(output, 20, C.SCREEN_HEIGHT - 100, arcade.color.BLACK, 12)
 
     def on_update_start(self):
         self.processing_time_start = timeit.default_timer()
 
     def on_update_end(self):
         output = f"Processing time: {timeit.default_timer() - self.processing_time_start:.3f}"
-        arcade.draw_text(output, 20, self.gameWindowReference.SCREEN_HEIGHT - 25, arcade.color.BLACK, 12)
+        arcade.draw_text(output, 20, C.SCREEN_HEIGHT - 25, arcade.color.BLACK, 12)
 
     
     

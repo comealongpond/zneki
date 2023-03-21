@@ -4,38 +4,30 @@ from controllers.GameObjectController import GameObjectController
 
 
 class PlayerController(GameObjectController):
-    def __init__(self, playerModel):
+    def __init__(self, playerModel, GameWindow, Sprite):
         self.modelReference = playerModel
+        self.gameWindowReference = GameWindow
+        self.spriteReference = Sprite
 
     def on_update(self, dt):
         super().on_update(dt)
-        if self.modelReference.position["y"] <= 300 and self.modelReference.isJumping:
-            self.modelReference.isJumping = False
-
-        if abs(self.modelReference.velocity["y"]) > 0:
-            self.modelReference.moveState = "jump"
-        elif self.modelReference.velocity["x"] == 0:
-            self.modelReference.moveState = "idle"
-        elif abs(self.modelReference.velocity["x"]) < (self.modelReference.speed / 2):
-            self.modelReference.moveState = "walk"
-        elif abs(self.modelReference.velocity["x"]) >= (self.modelReference.speed / 2):
-            self.modelReference.moveState = "run"
 
         return
 
     def on_keypress(self, symbol, modifiers):
-        if symbol == 100:
+        if symbol == arcade.key.D:
             self.modelReference.isMovingRight = True
-        if symbol == 97:
+        if symbol == arcade.key.A:
             self.modelReference.isMovingLeft = True
-        if symbol == 32 and not self.modelReference.isJumping:
-            self.modelReference.velocity["y"] = 500
+        if symbol == arcade.key.SPACE and self.gameWindowReference.physics_engine.is_on_ground(self.spriteReference):
             self.modelReference.isJumping = True
+            impulse = (0, 1800)
+            self.gameWindowReference.physics_engine.apply_impulse(self.spriteReference, impulse)
     
     def on_keyrelease(self, symbol, modifiers):
-        if symbol == 100:
+        if symbol == arcade.key.D:
             self.modelReference.isMovingRight = False
-        if symbol == 97:
+        if symbol == arcade.key.A:
             self.modelReference.isMovingLeft = False
         return 
     

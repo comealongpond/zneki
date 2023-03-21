@@ -9,7 +9,7 @@ class PlayerModel(GameObjectModel):
 
         self.acceleration = 1000
         self.deceleration = -1000
-        self.speed = 1000
+        self.speed = 8000
 
         self.isAffectedGravity = True
 
