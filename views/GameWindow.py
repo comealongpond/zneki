@@ -21,28 +21,36 @@ class GameWindow(arcade.Window):
         self.models.append(playerModel)
 
          # Map name
-        map_name = "assets/scenes/levels/2.json"
+        map_name = "assets/scenes/levels/3.json"
 
-        # Load in TileMap
-        tile_map = arcade.load_tilemap(map_name, C.SPRITE_SCALING_TILES)
-        self.tile_map_list = tile_map.sprite_lists["level_2"]
 
         gravity = (0, -C.GRAVITY)
         self.physics_engine = arcade.PymunkPhysicsEngine(damping=C.PLAYER_DAMPING,gravity=gravity)
-
+        
         self.sprites = arcade.SpriteList()
 
         self.playerSprite = PlayerSprite(playerModel)
         self.playerSprite.scale = C.SPRITE_SCALING_PLAYER
         self.playerSprite.center_x = 400
-        self.playerSprite.center_y = 500
+        self.playerSprite.center_y = 250
         self.sprites.append(self.playerSprite)
         self.add_player_sprite_to_physics_engine()
         
+        tile_map = arcade.load_tilemap(map_name, C.SPRITE_SCALING_TILES)
+        self.tile_map_list = tile_map.sprite_lists["level_3_tiles"]
         self.physics_engine.add_sprite_list(self.tile_map_list,
                                             friction=C.WALL_FRICTION,
                                             collision_type="wall",
                                             body_type=arcade.PymunkPhysicsEngine.STATIC)
+
+        object_map = arcade.load_tilemap(map_name, C.SPRITE_SCALING_TILES)
+        self.object_map_list = object_map.sprite_lists["level_3_objects"]
+        self.physics_engine.add_sprite_list(self.object_map_list,
+                                            friction=C.WALL_FRICTION,
+                                            collision_type="object",
+                                            body_type=arcade.PymunkPhysicsEngine.STATIC)
+        
+        self.physics_engine.add_collision_handler("player", "object", self.dead)
         
         self.playerController = PlayerController(playerModel, self, self.playerSprite)
         self.controllers.append(self.playerController)
@@ -57,14 +65,17 @@ class GameWindow(arcade.Window):
 
         #self.clear()
         arcade.start_render()
-
+        
         self.camera_sprites.use()
 
         arcade.draw_lrwh_rectangle_textured(0, 0, C.SCREEN_WIDTH * C.BACKGROUND_SCALE, C.SCREEN_HEIGHT * C.BACKGROUND_SCALE, arcade.load_texture("assets/scenes/BG.png"))
 
         self.tile_map_list.draw()
+        self.object_map_list.draw()
+        self.object_map_list.draw_hit_boxes()
 
         self.sprites.draw()
+        self.sprites.draw_hit_boxes()
 
         self.console.on_draw_end()
 
@@ -118,9 +129,13 @@ class GameWindow(arcade.Window):
         print("Game Over")
         self.physics_engine.remove_sprite(self.playerSprite)
         self.playerSprite.center_x = 400
-        self.playerSprite.center_y = 500
+        self.playerSprite.center_y = 250
         self.add_player_sprite_to_physics_engine()
         self.scroll_to_player()
+
+    def dead(self, sprite_a, sprite_b, arbiter, space, data):
+        self.game_over()
+        return False
 
     sprites = None
     controllers = []

@@ -1,9 +1,11 @@
 from models.GameObjectModel import GameObjectModel
 
+import Constants as C
+
 class PlayerModel(GameObjectModel):
     def __init__(self):
         super().__init__()
-        self.speed = 90000
+        self.speed = C.PLAYER_MOVE_FORCE
 
 
     def on_draw(self):
