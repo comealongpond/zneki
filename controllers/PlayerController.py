@@ -12,7 +12,6 @@ class PlayerController(GameObjectController):
 
     def on_update(self, dt):
         super().on_update(dt)
-
         return
 
     def on_keypress(self, symbol, modifiers):

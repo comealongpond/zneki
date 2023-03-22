@@ -2,8 +2,11 @@ SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 SCREEN_TITLE = "Zneki"
 
+CAMERA_SPEED = 1.0
+BACKGROUND_SCALE = 2.0
+
 # Gravity
-GRAVITY = 1500
+GRAVITY = 5000
 
 # Damping - Amount of speed lost per second
 DEFAULT_DAMPING = 1.0
@@ -22,20 +25,20 @@ PLAYER_MAX_HORIZONTAL_SPEED = 900
 PLAYER_MAX_VERTICAL_SPEED = 1600
 
 # Force applied when moving left/right in the air
-PLAYER_MOVE_FORCE_IN_AIR = 900
+PLAYER_MOVE_FORCE_IN_AIR = 25000
 
 # Strength of a jump
-PLAYER_JUMP_IMPULSE = 20000
+PLAYER_JUMP_IMPULSE = 10000
 
 # How big are our image tiles?
 SPRITE_IMAGE_SIZE = 128
 
 # Scale sprites up or down
-SPRITE_SCALING_PLAYER = 0.5
-SPRITE_SCALING_TILES = 0.5
+SPRITE_SCALING_PLAYER = .5
+SPRITE_SCALING_TILES = 1
 
 # Scaled sprite size for tiles
-SPRITE_SIZE = int(SPRITE_IMAGE_SIZE * SPRITE_SCALING_PLAYER)
+#SPRITE_SIZE = int(SPRITE_IMAGE_SIZE * SPRITE_SCALING_PLAYER)
 
 # Close enough to not-moving to have the animation go to idle.
 DEAD_ZONE = 1.0

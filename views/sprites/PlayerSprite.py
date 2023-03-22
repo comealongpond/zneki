@@ -3,8 +3,8 @@ from views.sprites.Sprite import Sprite
 class PlayerSprite(Sprite):
 
     def __init__(self, playerModel):
-        super().__init__(playerModel, "assets/sprites/the_knight/Idle_1.png")
         self.initSpritesList()
+        super().__init__(playerModel)
         self.spriteRotateDT = .1
 
     def initSpritesList(self):
