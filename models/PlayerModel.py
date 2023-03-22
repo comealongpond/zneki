@@ -3,7 +3,7 @@ from models.GameObjectModel import GameObjectModel
 class PlayerModel(GameObjectModel):
     def __init__(self):
         super().__init__()
-        self.speed = 9000
+        self.speed = 90000
 
 
     def on_draw(self):

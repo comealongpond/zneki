@@ -52,13 +52,16 @@ class GameWindow(arcade.Window):
 
         self.console = Console(self, playerController)
         
-        arcade.set_background_color(arcade.color.WHITE)
+       # arcade.set_background_color(arcade.color.AMAZON)
+        #arcade.draw_lrwh_rectangle_textured(0, 0, C.SCREEN_WIDTH, C.SCREEN_HEIGHT, arcade.load_texture("assets/scenes/BG.png"))
 
     def on_draw(self):
         self.console.on_draw_start()
 
-        self.clear()
-        #arcade.start_render()
+        #self.clear()
+        arcade.start_render()
+
+        arcade.draw_lrwh_rectangle_textured(0, 0, C.SCREEN_WIDTH, C.SCREEN_HEIGHT, arcade.load_texture("assets/scenes/BG.png"))
 
         self.tile_map_list.draw()
         self.sprites.draw()
