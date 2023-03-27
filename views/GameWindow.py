@@ -13,7 +13,8 @@ import Constants as C
 
 class GameWindow(arcade.Window):
     def __init__(self):
-        super().__init__(C.SCREEN_WIDTH, C.SCREEN_HEIGHT, C.SCREEN_TITLE)
+        self.screen_width, self.screen_height = arcade.window_commands.get_display_size()
+        super().__init__(self.screen_width, self.screen_height, C.SCREEN_TITLE)
         self.physics_engine = Optional[arcade.PymunkPhysicsEngine]
 
     def setup(self):
@@ -55,7 +56,7 @@ class GameWindow(arcade.Window):
         self.playerController = PlayerController(playerModel, self, self.playerSprite)
         self.controllers.append(self.playerController)
 
-        self.camera_sprites = arcade.Camera(C.SCREEN_WIDTH, C.SCREEN_HEIGHT)
+        self.camera_sprites = arcade.Camera(self.screen_width, self.screen_height)
 
         self.console = Console(self, self.playerController)
         
@@ -68,7 +69,7 @@ class GameWindow(arcade.Window):
         
         self.camera_sprites.use()
 
-        arcade.draw_lrwh_rectangle_textured(0, 0, C.SCREEN_WIDTH * C.BACKGROUND_SCALE, C.SCREEN_HEIGHT * C.BACKGROUND_SCALE, arcade.load_texture("assets/scenes/BG.png"))
+        arcade.draw_lrwh_rectangle_textured(0, 0, self.screen_width * C.BACKGROUND_SCALE, self.screen_height * C.BACKGROUND_SCALE, arcade.load_texture("assets/scenes/BG.png"))
 
         self.tile_map_list.draw()
         self.object_map_list.draw()
