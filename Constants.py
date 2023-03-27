@@ -4,7 +4,7 @@ CAMERA_SPEED = 1.0
 BACKGROUND_SCALE = 2.0
 
 # Gravity
-GRAVITY = 2000
+GRAVITY = 3000
 
 # Damping - Amount of speed lost per second
 DEFAULT_DAMPING = 1.0
@@ -24,7 +24,7 @@ PLAYER_MAX_VERTICAL_SPEED = 50000
 
 PLAYER_MOVE_FORCE = 10000
 # Force applied when moving left/right in the air
-PLAYER_MOVE_FORCE_IN_AIR = 5000
+PLAYER_MOVE_FORCE_IN_AIR = 8000
 
 # Strength of a jump
 PLAYER_JUMP_IMPULSE = 4000

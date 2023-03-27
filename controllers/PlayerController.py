@@ -19,8 +19,9 @@ class PlayerController(GameObjectController):
             self.modelReference.isMovingRight = True
         if symbol == arcade.key.A:
             self.modelReference.isMovingLeft = True
-        if symbol == arcade.key.SPACE and self.gameWindowReference.physics_engine.is_on_ground(self.spriteReference):
+        if symbol == arcade.key.SPACE and (self.gameWindowReference.physics_engine.is_on_ground(self.spriteReference) or not self.doubleJumped):
             impulse = (0, C.PLAYER_JUMP_IMPULSE)
+            self.doubleJumped = not self.gameWindowReference.physics_engine.is_on_ground(self.spriteReference)
             self.gameWindowReference.physics_engine.apply_impulse(self.spriteReference, impulse)
     
     def on_keyrelease(self, symbol, modifiers):
@@ -42,3 +43,5 @@ class PlayerController(GameObjectController):
             infoStr += "isMovingDown, "  
 
         return infoStr
+    
+    doubleJumped: bool = False
