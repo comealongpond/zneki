@@ -14,7 +14,7 @@ import Constants as C
 class GameWindow(arcade.Window):
     def __init__(self):
         self.screen_width, self.screen_height = arcade.window_commands.get_display_size()
-        super().__init__(self.screen_width, self.screen_height, C.SCREEN_TITLE)
+        super().__init__(self.screen_width, self.screen_height, C.SCREEN_TITLE, resizable=True)
         self.physics_engine = Optional[arcade.PymunkPhysicsEngine]
 
     def setup(self):
@@ -110,6 +110,11 @@ class GameWindow(arcade.Window):
     def on_key_release(self, symbol, modifiers):
         for controller in self.controllers:
             controller.on_keyrelease(symbol, modifiers)
+
+    def on_resize(self, width, height):
+        self.screen_width = width
+        self.screen_height = height
+        super().on_resize(width, height)
 
     def scroll_to_player(self):
         position = Vec2(max(self.playerSprite.center_x - self.width / 2, 0),
